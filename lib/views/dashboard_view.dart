@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensipegawai/views/login_view.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -7,6 +8,35 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: GNav(
+        backgroundColor: Color.fromARGB(255, 22, 60, 78), //warna background
+        color: Colors.white,
+        activeColor: Colors.black,
+        tabBackgroundColor: Colors.grey,
+        gap: 8,
+        onTabChange: (index) {
+          print(index);
+        },
+        padding: EdgeInsets.all(15),
+        tabs: const [
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.lock_clock,
+            text: 'Kehadiran',
+          ),
+          GButton(
+            icon: Icons.notification_important,
+            text: 'Nontification',
+          ),
+          GButton(
+            icon: Icons.settings,
+            text: 'Settings',
+          ),
+        ],
+      ),
       appBar: AppBar(
         leading: Container(
           padding: EdgeInsets.all(4),
@@ -93,11 +123,60 @@ class DashboardView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Wrap(
+                    children: [
+                      TombolMenu(
+                        image: Image.asset(
+                          'assets/absen.png',
+                          width: 50,
+                        ),
+                      ),
+                      TombolMenu(
+                        image: Image.asset(
+                          'assets/pengguna.png',
+                          width: 50,
+                        ),
+                      ),
+                      TombolMenu(
+                        image: Image.asset(
+                          'assets/pengajuan_izin.png',
+                          width: 50,
+                        ),
+                      ),
+                      TombolMenu(
+                        image: Image.asset(
+                          'assets/riwayat.png',
+                          width: 50,
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TombolMenu extends StatelessWidget {
+  final Image? image;
+  const TombolMenu({Key? key, this.image}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 9,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      margin: EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: image ?? SizedBox(),
       ),
     );
   }
@@ -149,11 +228,6 @@ class _InformasiPengguna extends StatelessWidget {
               ),
             ),
           ),
-          Image.asset(
-            'assets/bell.png',
-            width: 30,
-            height: 30,
-          )
         ],
       ),
     );

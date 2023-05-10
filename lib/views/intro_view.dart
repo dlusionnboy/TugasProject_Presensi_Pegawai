@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:presensipegawai/views/login_view.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-class IntroView extends StatelessWidget {
-  const IntroView({super.key});
-
-  Widget _buildImage(String assetName, [double width = 400]) {
-    return Image.asset('assets/$assetName', width: width);
-  }
+class IntroViev extends StatelessWidget {
+  const IntroViev({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +17,16 @@ class IntroView extends StatelessWidget {
       globalBackgroundColor: Colors.orange,
       pages: [
         PageViewModel(
-            title: 'Introduction screen',
+            title: 'Introduction Screen',
             body:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-            image: _buildImage('usher.png'),
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            image: Image.asset('assets/usher.png'),
             decoration: pageDecoration),
         PageViewModel(
-          title: 'Introduction screen 2',
+          title: 'Introduction Screen 2',
           body:
-              "aLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          image: _buildImage('mat.png'),
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          image: Image.asset('assets/mat.png'),
           decoration: pageDecoration,
         )
       ],
@@ -42,14 +38,9 @@ class IntroView extends StatelessWidget {
       },
       showNextButton: true,
       showDoneButton: true,
-      showSkipButton: true,
       showBackButton: false,
       back: Icon(Icons.arrow_back),
       next: Icon(Icons.arrow_forward),
-      skip: Text(
-        'skip',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
       done: Text(
         'Done',
         style: TextStyle(fontWeight: FontWeight.bold),

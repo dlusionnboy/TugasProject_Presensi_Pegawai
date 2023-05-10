@@ -8,6 +8,6 @@ void main(List<String> args) {
     theme: ThemeData(
         appBarTheme:
             AppBarTheme(backgroundColor: Color.fromARGB(255, 37, 90, 116))),
-    home: IntroView(),
+    home: IntroViev(),
   ));
 }
