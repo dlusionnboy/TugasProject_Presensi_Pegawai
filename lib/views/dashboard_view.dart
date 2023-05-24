@@ -1,165 +1,180 @@
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:presensipegawai/providers/dashboard_provider.dart';
+import 'package:presensipegawai/providers/kehadiran_provider.dart';
 import 'package:presensipegawai/views/login_view.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: GNav(
-        backgroundColor: Color.fromARGB(255, 22, 60, 78), //warna background
-        color: Colors.white,
-        activeColor: Colors.black,
-        tabBackgroundColor: Colors.grey,
-        gap: 8,
-        onTabChange: (index) {
-          print(index);
-        },
-        padding: EdgeInsets.all(15),
-        tabs: const [
-          GButton(
-            icon: Icons.home,
-            text: 'Home',
-          ),
-          GButton(
-            icon: Icons.lock_clock,
-            text: 'Kehadiran',
-          ),
-          GButton(
-            icon: Icons.notification_important,
-            text: 'Nontification',
-          ),
-          GButton(
-            icon: Icons.settings,
-            text: 'Settings',
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        leading: Container(
-          padding: EdgeInsets.all(4),
-          child: Image.asset('assets/logo.png'),
-        ),
-        title: Row(
-          children: [
-            Text(
-              'Presensi Pegawai',
+    return Consumer<DashboardProvider>(builder: (context, provider, Widget) {
+      return Scaffold(
+          bottomNavigationBar: BottomNavigatorBawah(),
+          appBar: AppBar(
+            leading: Container(
+              padding: EdgeInsets.all(4),
+              child: Image.asset('assets/logo.png'),
             ),
-          ],
-        ),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: Stack(
-        children: [
-          _Background(),
-          _InformasiPengguna(),
-          Card(
+            title: Row(
+              children: [
+                Text(
+                  'Presensi Pegawai',
+                ),
+              ],
+            ),
             elevation: 0,
-            margin: EdgeInsets.fromLTRB(0, 160, 0, 0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Column(
-                children: [
-                  Center(
-                      child: Text(
-                    'Pegawai Rajin',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    width: 350,
-                    decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                '07:30',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Jam Masuk',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                '07:30',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Jam Pulang',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Wrap(
+            centerTitle: true,
+          ),
+          body: provider.indexTombol == 0
+              ? DashboardPanel()
+              : provider.indexTombol == 1
+                  ? KehadiranProvider()
+                  : SizedBox());
+    });
+  }
+}
+
+class BottomNavigatorBawah extends StatelessWidget {
+  const BottomNavigatorBawah({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.read<DashboardProvider>();
+    return BottomNavigationBar(
+        currentIndex: p.indexTombol,
+        onTap: (value) {
+          p.saatdiklik(value);
+        },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.home), label: 'Beranda'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.history), label: 'Presensi'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.paperPlane), label: 'Acara'),
+        ]);
+  }
+}
+
+class DashboardPanel extends StatelessWidget {
+  const DashboardPanel({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        _Background(),
+        _InformasiPengguna(),
+        Card(
+          elevation: 0,
+          margin: EdgeInsets.fromLTRB(0, 160, 0, 0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                Center(
+                    child: Text(
+                  'Pegawai Rajin',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                )),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 350,
+                  decoration: BoxDecoration(
+                      color: Colors.blueGrey,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TombolMenu(
-                        image: Image.asset(
-                          'assets/absen.png',
-                          width: 50,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              '07:30',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Jam Masuk',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                          ],
                         ),
                       ),
-                      TombolMenu(
-                        image: Image.asset(
-                          'assets/pengguna.png',
-                          width: 50,
-                        ),
-                      ),
-                      TombolMenu(
-                        image: Image.asset(
-                          'assets/pengajuan_izin.png',
-                          width: 50,
-                        ),
-                      ),
-                      TombolMenu(
-                        image: Image.asset(
-                          'assets/riwayat.png',
-                          width: 50,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              '07:30',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Jam Pulang',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                          ],
                         ),
                       )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Wrap(
+                  children: [
+                    TombolMenu(
+                      image: Image.asset(
+                        'assets/absen.png',
+                        width: 50,
+                      ),
+                    ),
+                    TombolMenu(
+                      image: Image.asset(
+                        'assets/pengguna.png',
+                        width: 50,
+                      ),
+                    ),
+                    TombolMenu(
+                      image: Image.asset(
+                        'assets/pengajuan_izin.png',
+                        width: 50,
+                      ),
+                    ),
+                    TombolMenu(
+                      image: Image.asset(
+                        'assets/riwayat.png',
+                        width: 50,
+                      ),
+                    )
+                  ],
+                )
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -248,28 +263,3 @@ class _Background extends StatelessWidget {
     );
   }
 }
-
-// ClipPath(
- //   clipper: ClipClipper(),
-  //   child: Container(
-  //     width: double.infinity,
-  //     height: 200,
-  //     color: Color.fromARGB(255, 22, 60, 78),
-  //   ),
-  // ),
-
-// class ClipClipper extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     Path path=Path();
-
-//     path.lineTo(size.width, size.height);
-//     path.lineTo(size.width, 0);
-
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
-
-// }
