@@ -1,245 +1,106 @@
-import 'package:awesome_icons/awesome_icons.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:presensipegawai/providers/dashboard_provider.dart';
-import 'package:presensipegawai/providers/kehadiran_provider.dart';
-import 'package:presensipegawai/views/login_view.dart';
-import 'package:provider/provider.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DashboardProvider>(builder: (context, provider, Widget) {
-      return Scaffold(
-          bottomNavigationBar: BottomNavigatorBawah(),
-          appBar: AppBar(
-            leading: Container(
-              padding: EdgeInsets.all(4),
-              child: Image.asset('assets/logo.png'),
-            ),
-            title: Row(
-              children: [
-                Text(
-                  'Presensi Pegawai',
-                ),
-              ],
-            ),
-            elevation: 0,
-            centerTitle: true,
-          ),
-          body: provider.indexTombol == 0
-              ? DashboardPanel()
-              : provider.indexTombol == 1
-                  ? KehadiranProvider()
-                  : SizedBox());
-    });
-  }
-}
-
-class BottomNavigatorBawah extends StatelessWidget {
-  const BottomNavigatorBawah({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.read<DashboardProvider>();
-    return BottomNavigationBar(
-        currentIndex: p.indexTombol,
-        onTap: (value) {
-          p.saatdiklik(value);
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.home), label: 'Beranda'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.history), label: 'Presensi'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.paperPlane), label: 'Acara'),
-        ]);
-  }
-}
-
-class DashboardPanel extends StatelessWidget {
-  const DashboardPanel({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        _Background(),
-        _InformasiPengguna(),
-        Card(
-          elevation: 0,
-          margin: EdgeInsets.fromLTRB(0, 160, 0, 0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.orange,
+      appBar: AppBar(
+        leading: Container(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              children: [
-                Center(
-                    child: Text(
-                  'Pegawai Rajin',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )),
-                SizedBox(
-                  height: 5,
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/logo.png'),
+          ),
+        ),
+        title: const Text('Presensi Pegawai'),
+        actions: [Icon(Icons.logout)],
+        backgroundColor: Colors.black12,
+      ),
+
+      body: Stack(
+        children: [
+          _InformasiPengguna(),
+
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 180),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)
+                  )
                 ),
-                Container(
-                  width: 350,
-                  decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              '07:30',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Jam Masuk',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              '07:30',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Jam Pulang',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      )
+                elevation: 0,
+                margin: EdgeInsets.zero,
+                  child: Container(
+                    width: double.infinity,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 580,),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 30,
+              ),
+            )
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 140, 10, 500),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)
+              ),
+              color: Colors.brown,
+              elevation: 5,
+                  margin: EdgeInsets.zero,
+                    child: Container(
+                      width: double.infinity,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 10,),
+                            
+                            Wrap(
+                              children: [
+                                _Riwayat(gambar: 'assets/absen.png',),
+                                _Riwayat(gambar: 'assets/pengguna.png',),
+                                _Riwayat(gambar: 'assets/pengajuan_izin.png',),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+            ),
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 280, 10, 365),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
                 ),
-                Wrap(
-                  children: [
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/absen.png',
-                        width: 50,
-                      ),
+                color: Colors.brown,
+                elevation: 5,
+                    margin: EdgeInsets.zero,
+                      child: Container(
+                        width: double.infinity,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10,),
+                      Wrap(
+                        children: [
+                          _TombolMenu(gambar: 'assets/absen.png',),
+                          _TombolMenu(gambar: 'assets/riwayat.png',),
+                          _TombolMenu(gambar: 'assets/pengajuan_izin.png',),
+                          _TombolMenu(gambar: 'assets/pengguna.png',),
+                      ],
                     ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/pengguna.png',
-                        width: 50,
-                      ),
-                    ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/pengajuan_izin.png',
-                        width: 50,
-                      ),
-                    ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/riwayat.png',
-                        width: 50,
-                      ),
-                    )
                   ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class TombolMenu extends StatelessWidget {
-  final Image? image;
-  const TombolMenu({Key? key, this.image}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 9,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      margin: EdgeInsets.all(8),
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: image ?? SizedBox(),
-      ),
-    );
-  }
-}
-
-class _InformasiPengguna extends StatelessWidget {
-  const _InformasiPengguna({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(22, 60, 30, 0),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.asset(
-              'assets/boy.png',
-              width: 75,
-              height: 75,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Muhammad Nur',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '12210675',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text(
-                    'CYNICAL POET',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -249,17 +110,80 @@ class _InformasiPengguna extends StatelessWidget {
   }
 }
 
-class _Background extends StatelessWidget {
-  const _Background({
-    Key? key,
-  }) : super(key: key);
+class _TombolMenu extends StatelessWidget {
+  final String gambar;
+  const _TombolMenu({Key? key, this.gambar = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      width: double.infinity,
-      color: Colors.orange,
+    return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Image.asset(gambar, width: 45,),),
     );
   }
 }
+
+class _Riwayat extends StatelessWidget {
+  final String gambar;
+  const _Riwayat({Key? key, this.gambar = ''}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Image.asset(gambar, width: 45,)
+      ),
+    );
+  }
+}
+
+class _InformasiPengguna extends StatelessWidget {
+  const _InformasiPengguna({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+              child: Image.asset('assets/boy.png', 
+                width: 60,)),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Ilham Naffi', style: TextStyle(
+                          color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold,
+                        ),),
+                        Text('12210621', style: TextStyle(
+                          color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold,
+                        ),),
+                        Text('UI/UX', style: TextStyle(
+                          color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold,
+                        ),),
+                      ],
+                    ),
+                  ),
+          Image.asset('assets/bell.png', width: 30,),
+        ],
+      ),
+    );
+  }
+}
+

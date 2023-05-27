@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:presensipegawai/views/login_view.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-class IntroViev extends StatelessWidget {
-  const IntroViev({super.key});
+class IntroView extends StatelessWidget {
+  const IntroView({super.key});
 
   @override
   Widget build(BuildContext context) {

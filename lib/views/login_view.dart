@@ -103,7 +103,7 @@ class InputLogin extends StatelessWidget {
                     ),
                   ))),
           Container(
-            margin: EdgeInsets.only(top: 120),
+            margin: EdgeInsets.only(top: 180),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
