@@ -14,18 +14,18 @@ class LupaPasswordView extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.orange,
+            color: Color(0xFFECAF44),
           ),
           ClipPath(
             clipper: ClipClipper(),
             child: Container(
               width: double.infinity,
               height: 200,
-              color: Color.fromARGB(255, 22, 60, 78),
+              color: Color(0xFF1A2C42),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.fromLTRB(17, 47, 17, 17),
             child: Image.asset(
               'assets/logo.png',
               width: 60,
@@ -78,20 +78,6 @@ class _InputLupaPassword extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (c) => LoginView()));
-                  },
-                  child: const Text(
-                    'Back to login',
-                    style: TextStyle(color: Colors.white),
-                  ))
-            ],
-          ),
           Center(
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -106,12 +92,12 @@ class _InputLupaPassword extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      'Kirim',
+                      'Password Baru',
                       style: TextStyle(fontSize: 18),
                     ),
                   ))),
           Container(
-            margin: EdgeInsets.only(top: 110),
+            margin: EdgeInsets.only(top: 170),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -122,10 +108,10 @@ class _InputLupaPassword extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (c) => RegistrasiView()));
+                          MaterialPageRoute(builder: (c) => LoginView()));
                     },
                     child: const Text(
-                      'Registrasi',
+                      'Login',
                       style: TextStyle(
                           color: Colors.white, fontStyle: FontStyle.italic),
                     ))

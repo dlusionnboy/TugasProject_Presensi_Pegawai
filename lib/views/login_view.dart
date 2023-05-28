@@ -87,7 +87,7 @@ class InputLogin extends StatelessWidget {
           Center(
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 123, 152, 167),
+                      backgroundColor: Color(0xFF9C9C9C),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),
@@ -98,7 +98,7 @@ class InputLogin extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      'Login',
+                      'Masuk',
                       style: TextStyle(fontSize: 18),
                     ),
                   ))),
@@ -143,7 +143,7 @@ class _Segitiga extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 200,
-        color: Color.fromARGB(255, 22, 60, 78),
+        color: Color(0xFF1C2F46),
       ),
     );
   }
@@ -159,7 +159,7 @@ class _Background extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Colors.orange,
+      color: Color(0xFFECAF44),
     );
   }
 }
@@ -189,7 +189,7 @@ class _Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.fromLTRB(17, 47, 17, 17),
       child: Image.asset(
         'assets/logo.png',
         width: 70,
