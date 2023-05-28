@@ -2,7 +2,11 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:presensipegawai/providers/dashboard_provider.dart';
 import 'package:presensipegawai/providers/kehadiran_provider.dart';
+import 'package:presensipegawai/views/kehadiran_view.dart';
 import 'package:presensipegawai/views/login_view.dart';
+import 'package:presensipegawai/views/pengajuan_view.dart';
+import 'package:presensipegawai/views/pengguna_view.dart';
+import 'package:presensipegawai/views/riwayat_view.dart';
 import 'package:provider/provider.dart';
 
 class DashboardView extends StatelessWidget {
@@ -12,21 +16,27 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, Widget) {
       return Scaffold(
-          bottomNavigationBar: BottomNavigatorBawah(),
           appBar: AppBar(
             leading: Container(
-              padding: EdgeInsets.all(4),
+              padding: EdgeInsets.all(7),
               child: Image.asset('assets/logo.png'),
             ),
             title: Row(
               children: [
                 Text(
                   'Presensi Pegawai',
+                  style: TextStyle(fontSize: 17, color: Colors.black),
                 ),
+                Padding(padding: EdgeInsets.all(50)),
+                Image.asset(
+                  'assets/bell.png',
+                  width: 23,
+                )
               ],
             ),
             elevation: 0,
-            centerTitle: true,
+            centerTitle: false,
+            backgroundColor: Color(0xFFECAF44),
           ),
           body: provider.indexTombol == 0
               ? DashboardPanel()
@@ -34,30 +44,6 @@ class DashboardView extends StatelessWidget {
                   ? KehadiranProvider()
                   : SizedBox());
     });
-  }
-}
-
-class BottomNavigatorBawah extends StatelessWidget {
-  const BottomNavigatorBawah({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.read<DashboardProvider>();
-    return BottomNavigationBar(
-        currentIndex: p.indexTombol,
-        onTap: (value) {
-          p.saatdiklik(value);
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.home), label: 'Beranda'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.history), label: 'Presensi'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.paperPlane), label: 'Acara'),
-        ]);
   }
 }
 
@@ -73,102 +59,294 @@ class DashboardPanel extends StatelessWidget {
         _Background(),
         _InformasiPengguna(),
         Card(
-          elevation: 0,
-          margin: EdgeInsets.fromLTRB(0, 160, 0, 0),
+          elevation: 5,
+          margin: EdgeInsets.fromLTRB(10, 100, 10, 10),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
           ),
+          color: Color(0xFF1A2C42),
           child: Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               children: [
                 Center(
                     child: Text(
-                  'Pegawai Rajin',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  'Menu',
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 )),
                 SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
-                Container(
-                  width: 350,
-                  decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              '07:30',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Jam Masuk',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ],
-                        ),
+                Wrap(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (c) => KehadiranView()));
+                      },
+                      child: TombolMenu(
+                        gambar: 'assets/absen.png',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              '07:30',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Jam Pulang',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (c) => RiwayatView()));
+                      },
+                      child: TombolMenu(
+                        gambar: 'assets/riwayat.png',
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (c) => PengajuanView()));
+                      },
+                      child: TombolMenu(
+                        gambar: 'assets/pengajuan_izin.png',
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (c) => PenggunaView()));
+                      },
+                      child: TombolMenu(
+                        gambar: 'assets/pengguna.png',
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                Wrap(
-                  children: [
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/absen.png',
-                        width: 50,
-                      ),
+                Text(
+                  'Riwayat Hadir',
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      '22 Agustus 2023',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/pengguna.png',
-                        width: 50,
-                      ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('10'),
+                            Text('Masuk'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('01'),
+                            Text('Izin'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('03'),
+                            Text('Alpa'),
+                          ],
+                        ),
+                      ],
                     ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/pengajuan_izin.png',
-                        width: 50,
-                      ),
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      '22 Agustus 2023',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    TombolMenu(
-                      image: Image.asset(
-                        'assets/riwayat.png',
-                        width: 50,
-                      ),
-                    )
-                  ],
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('10'),
+                            Text('Masuk'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('01'),
+                            Text('Izin'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('03'),
+                            Text('Alpa'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      '22 Agustus 2023',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('10'),
+                            Text('Masuk'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('01'),
+                            Text('Izin'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('03'),
+                            Text('Alpa'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      '22 Agustus 2023',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('10'),
+                            Text('Masuk'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('01'),
+                            Text('Izin'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('03'),
+                            Text('Alpa'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      '22 Agustus 2023',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('10'),
+                            Text('Masuk'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('01'),
+                            Text('Izin'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('03'),
+                            Text('Alpa'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),
@@ -180,18 +358,23 @@ class DashboardPanel extends StatelessWidget {
 }
 
 class TombolMenu extends StatelessWidget {
-  final Image? image;
-  const TombolMenu({Key? key, this.image}) : super(key: key);
+  final String gambar;
+  const TombolMenu({Key? key, this.gambar = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 9,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 6,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       margin: EdgeInsets.all(8),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: image ?? SizedBox(),
+        padding: const EdgeInsets.all(18),
+        child: Image.asset(
+          gambar,
+          width: 30,
+        ),
       ),
     );
   }
@@ -205,15 +388,15 @@ class _InformasiPengguna extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(22, 60, 30, 0),
+      padding: const EdgeInsets.fromLTRB(17, 1, 1, 1),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Image.asset(
               'assets/boy.png',
-              width: 75,
-              height: 75,
+              width: 57,
+              height: 57,
               fit: BoxFit.cover,
             ),
           ),
@@ -227,7 +410,7 @@ class _InformasiPengguna extends StatelessWidget {
                   Text(
                     'Muhammad Nur',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
@@ -257,9 +440,9 @@ class _Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 123,
       width: double.infinity,
-      color: Colors.orange,
+      color: Color(0xFFECAF44),
     );
   }
 }
