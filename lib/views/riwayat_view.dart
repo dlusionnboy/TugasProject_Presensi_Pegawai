@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RiwayatProvider extends StatelessWidget {
-  const RiwayatProvider({super.key});
+class RiwayatView extends StatelessWidget {
+  const RiwayatView({super.key});
 
   @override
   Widget build(BuildContext context) {

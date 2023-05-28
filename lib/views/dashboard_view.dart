@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:presensipegawai/views/kehadiran_view.dart';
-import 'package:presensipegawai/providers/pengajuan_izin_provider.dart';
-import 'package:presensipegawai/providers/pengguna_provider.dart';
-import 'package:presensipegawai/providers/riwayat_provider.dart';
+import 'package:presensipegawai/views/pengajuan_izin_view.dart';
+import 'package:presensipegawai/views/pengguna_view.dart';
+import 'package:presensipegawai/views/riwayat_view.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -29,7 +29,7 @@ class DashboardView extends StatelessWidget {
           _InformasiPengguna(),
           SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.only(top: 180),
+            padding: const EdgeInsets.only(top: 200),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -50,40 +50,7 @@ class DashboardView extends StatelessWidget {
             ),
           )),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 140, 10, 500),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              color: Colors.brown,
-              elevation: 5,
-              margin: EdgeInsets.zero,
-              child: Container(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Wrap(
-                      children: [
-                        _Riwayat(
-                          gambar: 'assets/absen.png',
-                        ),
-                        _Riwayat(
-                          gambar: 'assets/pengguna.png',
-                        ),
-                        _Riwayat(
-                          gambar: 'assets/pengajuan_izin.png',
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 280, 10, 365),
+            padding: const EdgeInsets.fromLTRB(10, 150, 10, 490),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
@@ -115,7 +82,7 @@ class DashboardView extends StatelessWidget {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => RiwayatProvider()));
+                                    builder: (c) => RiwayatView()));
                           },
                           child: _TombolMenu(
                             gambar: 'assets/riwayat.png',
@@ -126,7 +93,7 @@ class DashboardView extends StatelessWidget {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => PengajuanIzinProvider()));
+                                    builder: (c) => PengajuanIzinView()));
                           },
                           child: _TombolMenu(
                             gambar: 'assets/pengajuan_izin.png',
@@ -137,13 +104,251 @@ class DashboardView extends StatelessWidget {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => PenggunaProvider()));
+                                    builder: (c) => PenggunaView()));
                           },
                           child: _TombolMenu(
                             gambar: 'assets/pengguna.png',
                           ),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 285, 10, 40),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              color: Colors.brown,
+              elevation: 5,
+              margin: EdgeInsets.zero,
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('History',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                    Card(
+                      color: Colors.blueGrey,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Text(
+                          '22 Agustus 2023',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text('10'),
+                                Text('Masuk'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('01'),
+                                Text('Izin'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('03'),
+                                Text('Alpa'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.blueGrey,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Text(
+                          '22 Agustus 2023',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text('10'),
+                                Text('Masuk'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('01'),
+                                Text('Izin'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('03'),
+                                Text('Alpa'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.blueGrey,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Text(
+                          '22 Agustus 2023',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text('10'),
+                                Text('Masuk'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('01'),
+                                Text('Izin'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('03'),
+                                Text('Alpa'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.blueGrey,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Text(
+                          '22 Agustus 2023',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text('10'),
+                                Text('Masuk'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('01'),
+                                Text('Izin'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('03'),
+                                Text('Alpa'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.blueGrey,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Text(
+                          '22 Agustus 2023',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text('10'),
+                                Text('Masuk'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('01'),
+                                Text('Izin'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text('03'),
+                                Text('Alpa'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),

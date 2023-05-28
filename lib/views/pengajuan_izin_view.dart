@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PenggunaProvider extends StatelessWidget {
-  const PenggunaProvider({super.key});
+class PengajuanIzinView extends StatelessWidget {
+  const PengajuanIzinView({super.key});
 
   @override
   Widget build(BuildContext context) {

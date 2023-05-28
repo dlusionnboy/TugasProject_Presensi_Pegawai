@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presensipegawai/providers/peta_provider.dart';
 import 'package:presensipegawai/views/dashboard_view.dart';
 import 'package:presensipegawai/login/intro_view.dart';
 import 'package:presensipegawai/login/login_view.dart';
@@ -10,11 +11,11 @@ void main(List<String> args) {
   runApp(MultiProvider(
     builder: (context, Widget) {
       return const MaterialApp(
-        home: IntroView(),
+        home: DashboardView(),
       );
     },
     providers: [
-      ChangeNotifierProvider(create: (c) => DashboardProvider()),
+      ChangeNotifierProvider(create: (c) => PetaProvider()),
     ],
   ));
 }
