@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:presensipegawai/views/dashboard_view.dart';
-import 'package:presensipegawai/views/lupa_password_view.dart';
-import 'package:presensipegawai/views/registrasi_view.dart';
+import 'package:presensipegawai/login/lupa_password_view.dart';
+import 'package:presensipegawai/login/registrasi_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

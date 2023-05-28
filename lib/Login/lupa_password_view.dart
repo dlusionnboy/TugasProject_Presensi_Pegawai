@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:presensipegawai/views/login_view.dart';
-import 'package:presensipegawai/views/registrasi_view.dart';
-import 'package:presensipegawai/views/ubah_password_view.dart';
+import 'package:presensipegawai/login/login_view.dart';
+import 'package:presensipegawai/login/registrasi_view.dart';
+import 'package:presensipegawai/login/ubah_password_view.dart';
 
 class LupaPasswordView extends StatelessWidget {
   const LupaPasswordView({super.key});
