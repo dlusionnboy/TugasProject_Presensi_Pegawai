@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:presensipegawai/Login/login_view.dart';
 import 'package:presensipegawai/views/kehadiran_view.dart';
 import 'package:presensipegawai/views/pengajuan_izin_view.dart';
 import 'package:presensipegawai/views/pengguna_view.dart';
@@ -21,7 +22,18 @@ class DashboardView extends StatelessWidget {
           ),
         ),
         title: const Text('Presensi Pegawai'),
-        actions: [Icon(Icons.logout)],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.power_settings_new,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (c) => LoginView()));
+            },
+          )
+        ],
         backgroundColor: Colors.black12,
       ),
       body: Stack(
@@ -29,7 +41,7 @@ class DashboardView extends StatelessWidget {
           _InformasiPengguna(),
           SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.only(top: 200),
+            padding: const EdgeInsets.only(top: 240),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -42,7 +54,7 @@ class DashboardView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 580,
+                      height: 570,
                     ),
                   ],
                 ),
@@ -50,7 +62,7 @@ class DashboardView extends StatelessWidget {
             ),
           )),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 150, 10, 490),
+            padding: const EdgeInsets.fromLTRB(10, 190, 10, 460),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
@@ -118,7 +130,7 @@ class DashboardView extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 285, 10, 40),
+            padding: const EdgeInsets.fromLTRB(10, 320, 10, 40),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
@@ -134,9 +146,11 @@ class DashboardView extends StatelessWidget {
                     ),
                     Text('History',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
                     Card(
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -179,7 +193,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ),
                     Card(
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -222,7 +236,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ),
                     Card(
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -265,7 +279,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ),
                     Card(
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -308,7 +322,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ),
                     Card(
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -420,7 +434,7 @@ class _InformasiPengguna extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(
                 'assets/boy.png',
-                width: 60,
+                width: 80,
               )),
           Expanded(
             child: Column(
@@ -431,7 +445,7 @@ class _InformasiPengguna extends StatelessWidget {
                   'Ilham Naffi',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -439,7 +453,7 @@ class _InformasiPengguna extends StatelessWidget {
                   '12210621',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 13,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -447,7 +461,7 @@ class _InformasiPengguna extends StatelessWidget {
                   'UI/UX',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 13,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -456,7 +470,7 @@ class _InformasiPengguna extends StatelessWidget {
           ),
           Image.asset(
             'assets/bell.png',
-            width: 30,
+            width: 50,
           ),
         ],
       ),
