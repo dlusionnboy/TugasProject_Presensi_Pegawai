@@ -28,8 +28,8 @@ class LupaPasswordView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(17, 47, 17, 17),
             child: Image.asset(
               'assets/logo.png',
-              width: 60,
-              height: 60,
+              width: 70,
+              height: 70,
               fit: BoxFit.cover,
             ),
           ),
@@ -81,7 +81,7 @@ class _InputLupaPassword extends StatelessWidget {
           Center(
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 123, 152, 167),
+                      backgroundColor: Color(0xFF1A2C42),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),

@@ -87,7 +87,7 @@ class InputLogin extends StatelessWidget {
           Center(
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF9C9C9C),
+                      backgroundColor: Color(0xFF1A2C42),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),
@@ -98,12 +98,12 @@ class InputLogin extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      'Masuk',
+                      'Login',
                       style: TextStyle(fontSize: 18),
                     ),
                   ))),
           Container(
-            margin: EdgeInsets.only(top: 120),
+            margin: EdgeInsets.only(top: 180),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -143,7 +143,7 @@ class _Segitiga extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 200,
-        color: Color(0xFF1C2F46),
+        color: Color(0xFF1A2C42),
       ),
     );
   }

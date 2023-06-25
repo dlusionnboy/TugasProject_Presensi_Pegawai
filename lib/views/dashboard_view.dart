@@ -1,7 +1,6 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:presensipegawai/providers/dashboard_provider.dart';
-import 'package:presensipegawai/providers/kehadiran_provider.dart';
 import 'package:presensipegawai/views/kehadiran_view.dart';
 import 'package:presensipegawai/views/login_view.dart';
 import 'package:presensipegawai/views/pengajuan_view.dart';
@@ -41,7 +40,7 @@ class DashboardView extends StatelessWidget {
           body: provider.indexTombol == 0
               ? DashboardPanel()
               : provider.indexTombol == 1
-                  ? KehadiranProvider()
+                  ? KehadiranView()
                   : SizedBox());
     });
   }
@@ -142,7 +141,7 @@ class DashboardPanel extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: ListTile(
                     leading: Text(
-                      '22 Agustus 2023',
+                      'Juni 2023',
                       style: TextStyle(fontSize: 16),
                     ),
                     title: Row(
@@ -150,8 +149,8 @@ class DashboardPanel extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text('10'),
-                            Text('Masuk'),
+                            Text('15'),
+                            Text('Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -159,8 +158,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('01'),
-                            Text('Izin'),
+                            Text('0'),
+                            Text('Tidak Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -168,8 +167,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('03'),
-                            Text('Alpa'),
+                            Text('0'),
+                            Text('Terlambat'),
                           ],
                         ),
                       ],
@@ -185,7 +184,7 @@ class DashboardPanel extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: ListTile(
                     leading: Text(
-                      '22 Agustus 2023',
+                      'Mei 2023',
                       style: TextStyle(fontSize: 16),
                     ),
                     title: Row(
@@ -193,8 +192,8 @@ class DashboardPanel extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text('10'),
-                            Text('Masuk'),
+                            Text('19'),
+                            Text('Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -203,7 +202,7 @@ class DashboardPanel extends StatelessWidget {
                         Column(
                           children: [
                             Text('01'),
-                            Text('Izin'),
+                            Text('Tidak Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -211,8 +210,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('03'),
-                            Text('Alpa'),
+                            Text('01'),
+                            Text('Terlambat'),
                           ],
                         ),
                       ],
@@ -228,7 +227,7 @@ class DashboardPanel extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: ListTile(
                     leading: Text(
-                      '22 Agustus 2023',
+                      'April 2023',
                       style: TextStyle(fontSize: 16),
                     ),
                     title: Row(
@@ -236,8 +235,8 @@ class DashboardPanel extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text('10'),
-                            Text('Masuk'),
+                            Text('14'),
+                            Text('Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -245,8 +244,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('01'),
-                            Text('Izin'),
+                            Text('0'),
+                            Text('Tidak Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -254,8 +253,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('03'),
-                            Text('Alpa'),
+                            Text('02'),
+                            Text('Terlambat'),
                           ],
                         ),
                       ],
@@ -271,7 +270,7 @@ class DashboardPanel extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: ListTile(
                     leading: Text(
-                      '22 Agustus 2023',
+                      'Maret 2023',
                       style: TextStyle(fontSize: 16),
                     ),
                     title: Row(
@@ -279,8 +278,8 @@ class DashboardPanel extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text('10'),
-                            Text('Masuk'),
+                            Text('20'),
+                            Text('Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -289,7 +288,7 @@ class DashboardPanel extends StatelessWidget {
                         Column(
                           children: [
                             Text('01'),
-                            Text('Izin'),
+                            Text('Tidak Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -297,8 +296,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('03'),
-                            Text('Alpa'),
+                            Text('0'),
+                            Text('Terlambat'),
                           ],
                         ),
                       ],
@@ -314,7 +313,7 @@ class DashboardPanel extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: ListTile(
                     leading: Text(
-                      '22 Agustus 2023',
+                      'Februari 2023',
                       style: TextStyle(fontSize: 16),
                     ),
                     title: Row(
@@ -322,8 +321,8 @@ class DashboardPanel extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text('10'),
-                            Text('Masuk'),
+                            Text('20'),
+                            Text('Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -331,8 +330,8 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('01'),
-                            Text('Izin'),
+                            Text('0'),
+                            Text('Tidak Hadir'),
                           ],
                         ),
                         SizedBox(
@@ -340,14 +339,57 @@ class DashboardPanel extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text('03'),
-                            Text('Alpa'),
+                            Text('0'),
+                            Text('Terlambat'),
                           ],
                         ),
                       ],
                     ),
                   ),
-                )
+                ),
+                Card(
+                  color: Colors.white,
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Text(
+                      'Januari 2023',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            Text('21'),
+                            Text('Hadir'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('0'),
+                            Text('Tidak Hadir'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text('0'),
+                            Text('Terlambat'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
